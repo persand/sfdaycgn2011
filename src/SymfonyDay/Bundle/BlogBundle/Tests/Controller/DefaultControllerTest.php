@@ -24,5 +24,16 @@ class DefaultControllerTest extends WebTestCase
         // Check if there are more than five SQL queries
         $profile = $client->getProfile();
         $this->assertLessThanOrEqual(5, $profile->getCollector('db')->getQueryCount());
+
+        // Click a link a move to another page
+        $title = 'Welcome To The Symfony Day Conference';
+        $link = $crawler
+            ->selectLink($title)
+            ->link()
+        ;
+
+        $crawler = $client->click($link);
+
+        $this->assertEquals(1, $crawler->filter('title:contains("'.$title.'")')->count());
     }
 }
