@@ -32,12 +32,12 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $post = $em->getRepository('SymfonyDayBlogBundle:Post')
-            ->getPublishedPost($id)
-        ;
-
-        if (!$post) {
-            throw $this->createNotFoundException(sprintf('The post object identified by #%u does not exist.', $id));
+        try {
+            $post = $em->getRepository('SymfonyDayBlogBundle:Post')
+                ->getPublishedPost($id)
+            ;
+        } catch (\Exception $e) {
+            throw $this->createNotFoundException(sprintf('The post object identified by #%u does not exist.', $id)); 
         }
 
         return array('post' => $post);
