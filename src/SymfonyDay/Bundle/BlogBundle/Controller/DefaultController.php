@@ -18,13 +18,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $posts = $em->getRepository('SymfonyDayBlogBundle:Post')
-            ->createQueryBuilder('p')
-            ->where('p.publishedAt IS NULL')
-            ->orWhere('p.publishedAt <= :date')
-            ->orderBy('p.publishedAt', 'DESC')
-            ->setParameter('date', date('Y-m-d H:i'))
-            ->getQuery()
-            ->execute()
+            ->getMostRecentPosts()
         ;
 
         return array('posts' => $posts);
