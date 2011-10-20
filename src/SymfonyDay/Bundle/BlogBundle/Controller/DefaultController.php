@@ -21,6 +21,19 @@ class DefaultController extends Controller
 
         return array('posts' => $posts);
     }
+
+    /**
+     * @Route("/blog/{id}", name="post")
+     * @Template()
+     */
+    public function postAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $post = $em->getRepository('SymfonyDayBlogBundle:Post')->find($id);
+
+        return array('post' => $post);
+    }
 }
 
 				
