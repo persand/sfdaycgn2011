@@ -2,12 +2,25 @@
 
 {% block title -%}
 
-	Welcome to {{ name }}'s page!
+	Blog
 
 {%- endblock %}
 
 {% block body %}
 
-	Hello {{ name }}!
+	<h1>Latest blog entries</h1>
+
+	{% for post in posts %}
+
+		<article class="post">
+			<h1>{{ post.title|title }}</h1>
+            <p>Written by {{ post.author|title }}</p>
+            <p>
+                {{ post.content }}
+            </p>
+		</article>
+        <!-- / .post -->
+
+	{% endfor %}
 
 {% endblock %}
