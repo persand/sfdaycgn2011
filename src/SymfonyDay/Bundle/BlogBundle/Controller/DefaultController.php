@@ -11,14 +11,11 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/hello/{name}")
-     *
+     * @Template("SymfonyDayBlogBundle:Default:index.html.twig")
      */
     public function indexAction($name)
     {
-        return $this->render(
-	        'SymfonyDayBlogBundle:Default:index.html.twig',
-	        array('name' => $name)
-	    );
+        return array('name' => $name);
     }
 }
 
