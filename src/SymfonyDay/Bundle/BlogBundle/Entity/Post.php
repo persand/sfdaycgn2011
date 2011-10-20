@@ -2,6 +2,7 @@
 
 namespace SymfonyDay\Bundle\BlogBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,6 +50,21 @@ class Post
      */
     private $author;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
+     */
+     */
+    private $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
+
+    public function getComments()
+    {
+        return $this->comments;
+    }
 
     /**
      * Get id
