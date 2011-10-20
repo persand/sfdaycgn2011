@@ -20,8 +20,10 @@
 
     {% for comment in post.comments %}
 
-        <h4>{{ comment.author }}</h4>
-        <p>{{ comment.message }}</p>
+        <p>
+            <strong>{{ comment.author }}:</strong>
+            {{ comment.message }}
+        </p>
 
     {% else %}
 
