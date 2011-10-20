@@ -10,8 +10,12 @@ class DefaultControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/hello/Fabien');
+        $crawler = $client->request('GET', '/blog');
 
-        $this->assertTrue($crawler->filter('html:contains("Hello Fabien")')->count() > 0);
+        $this->assertEquals(2, $crawler->filter('.post')->count());
+        $this->assertEquals(1, $crawler->filter('html:contains("Symfony Day")')->count());
+
+        $response = $client->getResponse();
+        $this->assertRegExp('/Second/', $response->getContent());
     }
 }
