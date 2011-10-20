@@ -18,10 +18,11 @@
                     {{ post.title|title }}
                 </a>
             </h1>
-            <p>Written by {{ post.author|title }}</p>
-            <p>
-                {{ post.content }}
-            </p>
+            {% 
+                include "SymfonyDayBlogBundle:Default:details.html.twig" with {
+                    'post': post
+                } only
+            %}
 		</article>
         <!-- / .post -->
 
