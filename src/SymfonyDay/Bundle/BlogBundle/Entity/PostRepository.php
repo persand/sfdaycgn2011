@@ -15,11 +15,9 @@ class PostRepository extends EntityRepository
     public function getPublishedPost($id)
     {
         return $this
-            ->createQueryBuilder('p')
-            ->where('p.id = :id')
-            ->andWhere('p.publishedAt IS NULL OR p.publishedAt <= :date')
+            ->getActivePostsQueryBuilder('p')
+            ->andWhere('p.id = :id')
             ->setParameter('id', $id)
-            ->setParameter('date', date('Y-m-d H:i'))
             ->getQuery()
             ->getSingleResult()
         ;
@@ -28,13 +26,18 @@ class PostRepository extends EntityRepository
     public function getMostRecentPosts()
     {
         return $this
-            ->createQueryBuilder('p')
-            ->where('p.publishedAt IS NULL')
-            ->orWhere('p.publishedAt <= :date')
-            ->orderBy('p.publishedAt', 'DESC')
-            ->setParameter('date', date('Y-m-d H:i'))
+            ->getActivePostsQueryBuilder('p')
             ->getQuery()
             ->execute()
+        ;
+    }
+
+    private function getActivePostsQueryBuilder($alias)
+    {
+        return $this
+            ->createQueryBuilder($alias)
+            ->andWhere('p.publishedAt IS NULL OR p.publishedAt <= :date')
+            ->setParameter('date', date('Y-m-d H:i'))
         ;
     }
 }
