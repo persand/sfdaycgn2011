@@ -16,6 +16,19 @@
         } only
     %}
 
+    <h2>Comments</h2>
+
+    {% for comment in post.comments %}
+
+        <h4>{{ comment.author }}</h4>
+        <p>{{ comment.message }}</p>
+
+    {% else %}
+
+        <p>No comments yet!</p>
+
+    {% endfor %}
+
     <h2>Add a new comment</h2>
 
     <form novalidate action="{{ path('post', { 'id': post.id } ) }}" method="post">
