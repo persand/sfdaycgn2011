@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * SymfonyDay\Bundle\BlogBundle\Entity\Post
  *
- * @ORM\Table()
+ * @ORM\Table(name="sfday_posts")
  * @ORM\Entity(repositoryClass="SymfonyDay\Bundle\BlogBundle\Entity\PostRepository")
  */
 class Post
