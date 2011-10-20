@@ -14,17 +14,17 @@ class PostRepository extends EntityRepository
 {
     public function getPublishedPost($id)
     {
-        return $this
-            ->getActivePostsQueryBuilder('p')
-            ->select('p, c')
+        $post = $this
+            ->getActivePostsQueryBuilder('p')  
+            ->select('c', 'p')          
             ->leftJoin('p.comments', 'c')
             ->andWhere('p.id = :id')
-            ->andWhere('c.isPublished = :published')
             ->setParameter('id', $id)
-            ->setParameter('published', true)
             ->getQuery()
             ->getSingleResult()
         ;
+
+        return $post;
     }
 
     public function getMostRecentPosts()

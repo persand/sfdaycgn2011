@@ -66,6 +66,18 @@ class Post
         return $this->comments;
     }
 
+    public function getPublishedComments()
+    {
+        $comments = array();
+        foreach ($this->comments as $comment) {
+            if ($comment->getIsPublished()) {
+                $comments[] = $comment;
+            }
+        }
+
+        return $comments;
+    }
+
     /**
      * Get id
      *
