@@ -13,7 +13,11 @@
 	{% for post in posts %}
 
 		<article class="post">
-			<h1>{{ post.title|title }}</h1>
+			<h1>
+                <a href="{{ path('post', { 'id': post.id } ) }}">
+                    {{ post.title|title }}
+                </a>
+            </h1>
             <p>Written by {{ post.author|title }}</p>
             <p>
                 {{ post.content }}
