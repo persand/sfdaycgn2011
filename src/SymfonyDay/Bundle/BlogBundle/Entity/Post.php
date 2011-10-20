@@ -2,6 +2,9 @@
 
 namespace SymfonyDay\Bundle\BlogBundle\Entity;
 
+use Symfony\Component\HttpFoundation\Response;
+use Zend\Component\HttpFoundation\Response as ZendResponse;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
