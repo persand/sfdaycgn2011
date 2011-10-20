@@ -32,6 +32,10 @@ class DefaultController extends Controller
 
         $post = $em->getRepository('SymfonyDayBlogBundle:Post')->find($id);
 
+        if (!$post) {
+            throw $this->createNotFoundException(sprintf('The post object identified by #%u does not exist.', $id));
+        }
+
         return array('post' => $post);
     }
 }
