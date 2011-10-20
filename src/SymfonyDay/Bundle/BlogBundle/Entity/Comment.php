@@ -3,6 +3,7 @@
 namespace SymfonyDay\Bundle\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * SymfonyDay\Bundle\BlogBundle\Entity\Comment
@@ -25,6 +26,9 @@ class Comment
      * @var string $author
      *
      * @ORM\Column(name="author", type="string", length=40)
+     * @Assert\NotBlank()
+     * @Assert\MinLength(2)
+     * @Assert\MaxLength(40)
      */
     private $author;
 
@@ -32,6 +36,9 @@ class Comment
      * @var text $message
      *
      * @ORM\Column(name="message", type="text")
+     * @Assert\NotBlank()
+     * @Assert\MinLength(10)
+     * @Assert\Regex(pattern="/sex|spam|poker/", match=false, message="Die spammer!!!")
      */
     private $message;
 
