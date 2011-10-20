@@ -15,7 +15,10 @@ class DefaultController extends Controller
      */
     public function indexAction($name)
     {
-        return new Response('Hello '. $name .'!');
+        return $this->render(
+	        'SymfonyDayBlogBundle:Default:index.html.twig',
+	        array('name' => $name)
+	    );
     }
 }
 
