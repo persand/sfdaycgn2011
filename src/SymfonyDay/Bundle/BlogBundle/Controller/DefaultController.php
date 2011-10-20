@@ -23,7 +23,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/blog/{id}", name="post")
+     * @Route("/blog/{id}", requirements={ "id"="\d+" }, name="post")
      * @Template()
      */
     public function postAction($id)
