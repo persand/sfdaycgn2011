@@ -2,9 +2,6 @@
 
 namespace SymfonyDay\Bundle\BlogBundle\Entity;
 
-use Symfony\Component\HttpFoundation\Response;
-use Zend\Component\HttpFoundation\Response as ZendResponse;
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,7 +38,7 @@ class Post
     /**
      * @var datetime $publishedAt
      *
-     * @ORM\Column(name="publishedAt", type="datetime")
+     * @ORM\Column(name="published_at", type="datetime")
      */
     private $publishedAt;
 
