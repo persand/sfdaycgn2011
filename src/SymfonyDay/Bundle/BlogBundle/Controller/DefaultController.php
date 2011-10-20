@@ -18,6 +18,8 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $posts = $em->getRepository('SymfonyDayBlogBundle:Post')->findAll();
+
+        return array('posts' => $posts);
     }
 }
 
