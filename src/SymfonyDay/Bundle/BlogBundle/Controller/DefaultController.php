@@ -21,6 +21,7 @@ class DefaultController extends Controller
             ->createQueryBuilder('p')
             ->where('p.publishedAt IS NULL')
             ->orWhere('p.publishedAt <= :date')
+            ->orderBy('p.publishedAt', 'DESC')
             ->setParameter('date', date('Y-m-d H:i'))
             ->getQuery()
             ->execute()
