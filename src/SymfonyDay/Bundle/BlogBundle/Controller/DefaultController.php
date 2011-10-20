@@ -11,7 +11,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/hello/{name}")
-     * @Template("SymfonyDayBlogBundle:Default:index.html.twig")
+     * @Template()
      */
     public function indexAction($name)
     {
