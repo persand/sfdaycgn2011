@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use SymfonyDay\Bundle\BlogBundle\Entity\Comment;
+use SymfonyDay\Bundle\BlogBundle\Form\CommentType;
 
 class DefaultController extends Controller
 {
@@ -40,7 +42,28 @@ class DefaultController extends Controller
             throw $this->createNotFoundException(sprintf('The post object identified by #%u does not exist.', $id), $e); 
         }
 
-        return array('post' => $post);
+        $comment = new Comment();
+        $comment->setPost($post);
+
+        $form = $this->createForm(new CommentType(), $comment);
+
+        $request = $this->getRequest();
+        if ('POST' === $request->getMethod()) {
+            $form->bindRequest($request);
+            if ($form->isValid()) {
+                $em->persist($comment);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('post', array(
+                    'id' => $post->getId()
+                )));
+            }
+        }
+
+        return array(
+            'post' => $post,
+            'form' => $form->createView()
+        );
     }
 }
 

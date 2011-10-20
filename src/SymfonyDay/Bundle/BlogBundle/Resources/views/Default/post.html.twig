@@ -16,4 +16,16 @@
         } only
     %}
 
+    <h2>Add a new comment</h2>
+
+    <form action="{{ path('blog', { 'id': post.id } ) }}" method="post">
+
+        {{ form_widget(form) }}
+
+        <p>
+            <button type="submit">Add your comment</button>
+        </p>
+
+    </form>
+
 {% endblock %}
