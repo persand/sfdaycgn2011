@@ -1,4 +1,7 @@
-<p>Written by {{ post.author|title }}</p>
+<p>
+    Written by {{ post.author|title }} on 
+    {{ post.publishedAt|date('d/m/Y H:i') }}
+</p>
 
 <p>
     {{ post.content }}
