@@ -1,6 +1,11 @@
+{% set date_format = 'j/n Y, H:i' %}
+
 <p>
-    Written by {{ post.author|title }} on 
-    {{ post.publishedAt|date('d/m/Y H:i') }}
+    Written by {{ post.author|title }}
+    {% if post.publishedAt is not empty %} 
+        on
+        {{ post.publishedAt|date(date_format) }}
+    {% endif %}
 </p>
 
 <p>
