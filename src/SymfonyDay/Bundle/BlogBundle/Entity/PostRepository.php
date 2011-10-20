@@ -17,8 +17,7 @@ class PostRepository extends EntityRepository
         return $this
             ->createQueryBuilder('p')
             ->where('p.id = :id')
-            ->andWhere('p.publishedAt IS NULL')
-            ->orWhere('p.publishedAt <= :date')
+            ->andWhere('p.publishedAt IS NULL OR p.publishedAt <= :date')
             ->setParameter('id', $id)
             ->setParameter('date', date('Y-m-d H:i'))
             ->getQuery()
