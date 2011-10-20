@@ -18,7 +18,7 @@
 
     <h2>Add a new comment</h2>
 
-    <form action="{{ path('blog', { 'id': post.id } ) }}" method="post">
+    <form novalidate action="{{ path('post', { 'id': post.id } ) }}" method="post">
 
         {{ form_widget(form) }}
 
