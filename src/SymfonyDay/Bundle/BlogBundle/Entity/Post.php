@@ -52,7 +52,7 @@ class Post
 
     /**
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
-     */
+     *
      */
     private $comments;
 

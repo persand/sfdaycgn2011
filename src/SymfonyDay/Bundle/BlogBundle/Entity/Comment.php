@@ -43,7 +43,7 @@ class Comment
     private $isPublished;
 
     /**
-     * @ORM\ManyToOne(targeEntity="Post", inversedBy="comment")
+     * @ORM\ManyToOne(targetEntity="Post", inversedBy="comment")
      *
      */
     private $post;
