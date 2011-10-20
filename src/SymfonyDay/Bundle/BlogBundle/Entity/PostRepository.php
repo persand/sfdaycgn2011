@@ -12,6 +12,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class PostRepository extends EntityRepository
 {
+    public function getPublishedPost($id)
+    {
+        return $this
+            ->createQueryBuilder('p')
+            ->where('p.id = :id')
+            ->andWhere('p.publishedAt IS NULL')
+            ->orWhere('p.publishedAt <= :date')
+            ->setParameter('id', $id)
+            ->setParameter('date', date('Y-m-d H:i'))
+            ->getQuery()
+            ->getSingleResult()
+        ;
+    }
+
     public function getMostRecentPosts()
     {
         return $this
