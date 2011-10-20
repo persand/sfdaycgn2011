@@ -37,7 +37,7 @@ class DefaultController extends Controller
                 ->getPublishedPost($id)
             ;
         } catch (\Exception $e) {
-            throw $this->createNotFoundException(sprintf('The post object identified by #%u does not exist.', $id)); 
+            throw $this->createNotFoundException(sprintf('The post object identified by #%u does not exist.', $id), $e); 
         }
 
         return array('post' => $post);
