@@ -16,8 +16,12 @@ class PostRepository extends EntityRepository
     {
         return $this
             ->getActivePostsQueryBuilder('p')
+            ->select('p, c')
+            ->leftJoin('p.comments', 'c')
             ->andWhere('p.id = :id')
+            ->andWhere('c.isPublished = :published')
             ->setParameter('id', $id)
+            ->setParameter('published', true)
             ->getQuery()
             ->getSingleResult()
         ;
